@@ -6,9 +6,6 @@ import styled from 'styled-components';
 
 
 class MyNetflixMiniGuide extends Component {
-    constructor(props){
-        super(props);
-    }
     render(){
         const MiniGuide = styled.div`
             position: fixed;

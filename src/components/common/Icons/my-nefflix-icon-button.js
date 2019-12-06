@@ -3,9 +3,6 @@ import MyNetflixIcon from '../my-netflix-icon';
 import styled from 'styled-components';
 
 class MyNetflixIconButton extends Component {
-    constructor(props){
-        super(props);
-    }
     render(){
         const Button = styled.button`
             width:40px;

@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import MyNetflixIconButton from '../Icons/my-nefflix-icon-button';
 import MenuIcon from '../Svg-Icons/menu-icon';
 import MyNetflixLogo from '../my-netflix-logo';
-import Browse from '../../pages/browse';
 
 const Navbar = function(){
 

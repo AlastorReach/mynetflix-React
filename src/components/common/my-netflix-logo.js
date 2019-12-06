@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import NeflixLogo from './Svg-Icons/netflix-logo';
 import NetflixLogo from './Svg-Icons/netflix-logo';
 
 const MyNetflixLogo = function(props){

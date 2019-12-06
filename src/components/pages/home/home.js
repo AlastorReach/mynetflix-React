@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Navbar from './navbar';
 
-import ChevronRight from '../../common/Svg-Icons/chevron-right';
 const Home = function(){
     const MainContainer = styled.div`
         margin: 0 auto;
@@ -86,15 +85,6 @@ const Home = function(){
             align-content: center;
         `;
             
-            const ProbarAhoraContainer = styled.div`
-                -webkit-box-flex: 1;
-                -webkit-flex: 1 0 auto;
-                -moz-box-flex: 1;
-                -ms-flex: 1 0 auto;
-                flex: 1 0 auto;
-                margin-top: 0;
-                float:none;
-            `;
 
                 const Button = styled.button`
                 width: 100%;
@@ -162,7 +152,7 @@ const Home = function(){
                             <img alt="" className="our-story-card-img"  style={{width: "100%", height: "auto", position: "relative", zIndex: "2"}}
                             src={process.env.PUBLIC_URL + "/images/tv.png"} data-uia="our-story-card-img"/>
                             <AnimationContainer style={{width: "100%", height: "100%", maxWidth: "73%",maxHeight: "54%", position: "absolute", top: "48%", left: "50%", transform: "translate(-50%, -50%)", zIndex: "1"}}>
-                            <video style={{width: "100%",height: "100%"}} className="our-story-card-video" autoplay="" playsinline="" muted="" loop="true"><source src={process.env.PUBLIC_URL + "/videos/video-tv-0819.m4v"} type="video/mp4"/></video>
+                            <video style={{width: "100%",height: "100%"}} className="our-story-card-video" autoPlay={true} playsInline="" muted="" loop={true}><source src={process.env.PUBLIC_URL + "/videos/video-tv-0819.m4v"} type="video/mp4"/></video>
                             </AnimationContainer>
                             </ImgBgContainer>
                         </AnimationContainer>
