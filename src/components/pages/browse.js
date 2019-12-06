@@ -11,13 +11,15 @@ import RowContainerMovie from '../common/containerMovie/row-container-movie';
 import ContainerMovie from '../common/containerMovie/container-movie';
 import Heading from '../common/containerMovie/row-movie-heading';
 
+import { Link } from 'react-router-dom';
+
 const Browse = function(){
     const entries = [
         <MyNetflixMiniGuideEntry key="inicio" to="/browse" icon={<HomeIcon/>}  title="Inicio" isSelected={true} />,
         <MyNetflixMiniGuideEntry key="biblioteca" to="/library" icon={<BibliotecaIcon/>}  title="Biblioteca" isSelected={false} />,
       ]
     const children = [
-        <ContainerMovie key="1" image="https://image.tmdb.org/t/p/original//ww5aGS5H2tUtckxFFNOJE2790S7.jpg" />,
+       <Link to="/watch"><ContainerMovie key="1" image="https://image.tmdb.org/t/p/original//ww5aGS5H2tUtckxFFNOJE2790S7.jpg" /></Link>,
         <ContainerMovie key="2" image="https://image.tmdb.org/t/p/original//aQLygZOIKai6aaiBAeeKpIWO5nc.jpg" />,
         <ContainerMovie key="3" image="https://image.tmdb.org/t/p/original//mSQjVoZJaZkaHpdLIahh04bfGDr.jpg" />,
         <ContainerMovie key="4" image="https://image.tmdb.org/t/p/original//a1MlbLBk5Sy6YvMbSuKfwGlDVlb.jpg" />,
