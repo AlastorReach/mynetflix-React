@@ -1,8 +1,8 @@
 import React from 'react';
 
 const SubtitlesIcon = () => (
-    <svg className="svg-icon svg-icon-nfplayerEpisodes" focusable="false">
-        <use filter="" xlinkHref="#nfplayerEpisodes"></use>
+    <svg className="svg-icon svg-icon-nfplayerSubtitles" focusable="false">
+        <use filter="" xlinkHref="#nfplayerSubtitles"></use>
     </svg>
 )
 

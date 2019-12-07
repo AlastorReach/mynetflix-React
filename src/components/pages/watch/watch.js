@@ -11,10 +11,16 @@ import NextIcon from '../../common/Svg-Icons/next-icon';
 import SeasonsIcon from '../../common/Svg-Icons/seasons.icon';
 import SubtitlesIcon from '../../common/Svg-Icons/subtitles-icon';
 import FullScreenIcon from '../../common/Svg-Icons/full-screen-icon';
+import ScrubberHead from './scrubber-head';
+import ScrubberBuffered from './scrubber-buffered';
+import ScrubberProgress from './scrubber-progress';
 
 import './style.css';
 
 const Watch = function () {
+
+    var video = React.createRef();
+
     const SizingWrapper = styled.div`
         position: absolute;
         top: 0px;
@@ -424,37 +430,9 @@ const Watch = function () {
                                                 will-change: height;
                                             `;
 
-                                                const Buffered = styled.div`
-                                                    background: rgba(255,255,255,.2);
-                                                    display: -webkit-box;
-                                                    display: -webkit-flex;
-                                                    display: -moz-box;
-                                                    display: -ms-flexbox;
-                                                    display: flex;
-                                                    width: 100%;
-                                                    height: 100%;
-                                                    position: absolute;
-                                                    top: 0;
-                                                    right: 0;
-                                                    bottom: 0;
-                                                    left: 0;
-                                                `;
+                                                
 
-                                                const CurrentProgress = styled.div`
-                                                    background: #e50914;
-                                                    display: -webkit-box;
-                                                    display: -webkit-flex;
-                                                    display: -moz-box;
-                                                    display: -ms-flexbox;
-                                                    display: flex;
-                                                    width: 100%;
-                                                    height: 100%;
-                                                    position: absolute;
-                                                    top: 0;
-                                                    right: 0;
-                                                    bottom: 0;
-                                                    left: 0;
-                                                `;
+                                                
 
                                                 const PlayHead = styled.div`
                                                 height: 100%;
@@ -494,35 +472,7 @@ const Watch = function () {
                                                     font-size: 1.8em;
                                                 `;
 
-                                            const ScrubberHead = styled.div`
-                                                left: 0%;
-                                                top: 0px!important;
-                                                position: absolute;
-                                                top: 50%;
-                                                height: 2.3em;
-                                                width: 2.3em;
-                                                margin: -1.15em;
-                                                background: #e50914;
-                                                -webkit-border-radius: 50%;
-                                                -moz-border-radius: 50%;
-                                                border-radius: 50%;
-                                                opacity: 1;
-                                                -webkit-transform: scale(1) translateZ(0);
-                                                -moz-transform: scale(1) translateZ(0);
-                                                transform: scale(1) translateZ(0);
-                                                -webkit-transition: -webkit-transform .2s ease;
-                                                transition: -webkit-transform .2s ease;
-                                                -o-transition: -o-transform .2s ease;
-                                                -moz-transition: transform .2s ease,-moz-transform .2s ease;
-                                                transition: transform .2s ease;
-                                                transition: transform .2s ease,-webkit-transform .2s ease,-moz-transform .2s ease,-o-transform .2s ease;
-                                                -webkit-transform-origin: 50% 50%;
-                                                -moz-transform-origin: 50% 50%;
-                                                -ms-transform-origin: 50% 50%;
-                                                -o-transform-origin: 50% 50%;
-                                                transform-origin: 50% 50%;
-                                                cursor: pointer;
-                                            `;
+                                            
 
                                 const TextControl = styled.div`
                                     -webkit-transition: opacity .25s,-webkit-transform .25s cubic-bezier(.5,0,.1,1);
@@ -572,7 +522,7 @@ const Watch = function () {
                             display: flex;
                         `;
 
-                            const PlayButton = styled.button`
+                            const Button = styled.button`
                             
                             `;
 
@@ -660,9 +610,7 @@ const Watch = function () {
                             const SubtitlesInfo = styled.div`
                             
                             `;
-
-
-                                                
+     
     return (
         <div className="nf-kb-nav-wrapper">
             <SizingWrapper>
@@ -672,7 +620,9 @@ const Watch = function () {
                             <GeneralIcon />
                             <VideoContainer>
                                 <VideoContainerFirst>
-                                    <Video></Video>
+                                    <Video autoPlay={true} id="video" ref={video} preload="auto">
+                                        <source src={process.env.PUBLIC_URL + "videos/test.mp4"} type="video/mp4"/>
+                                    </Video>
                                     <PlayerTimedText />
                                 </VideoContainerFirst>
                             </VideoContainer>
@@ -698,17 +648,17 @@ const Watch = function () {
                                                     <ScrubberContainer>
                                                         <ScrubberBar>
                                                             <Track>
-                                                                <Buffered />
-                                                                <CurrentProgress />
+                                                                <ScrubberBuffered video={video}  id="scrubber-buffered"/>
+                                                                <ScrubberProgress video={video} id="scrubber-progress"/>
                                                                 <PlayHead />
                                                             </Track>
                                                             <TrickPlay>
                                                                 <div className="tp-image">
-                                                                    <img src="" />
+                                                                    <img src="" alt=""/>
                                                                 </div>
                                                                 <TpText>17:47</TpText>
                                                             </TrickPlay>
-                                                            <ScrubberHead />
+                                                            <ScrubberHead video={video}/>
                                                         </ScrubberBar>
                                                     </ScrubberContainer>
                                                 </ProgressControl>
@@ -717,20 +667,20 @@ const Watch = function () {
                                                 </TextControl>
                                             </PlayerControlsNeoProgressContainer>
                                         </PlayerControlsNeoProgressControl>
-                                        <PlayerControlsNeoButtonControlRow>
-                                            <PlayButton className="player-controls--control-element nfp-button-control touchable " >
+                                        <PlayerControlsNeoButtonControlRow >
+                                            <Button className="player-controls--control-element nfp-button-control touchable " >
                                                 <PlayIcon />
-                                            </PlayButton>
-                                            <PlayButton className="player-controls--control-element nfp-button-control touchable " >
-                                                <BackTenIcon />
-                                            </PlayButton>
-                                            <PlayButton className="player-controls--control-element nfp-button-control touchable " >
+                                            </Button>
+                                            <Button className="player-controls--control-element nfp-button-control touchable " >
+                                                <BackTenIcon/>
+                                            </Button>
+                                            <Button className="player-controls--control-element nfp-button-control touchable " >
                                                 <GoTenIcon />
-                                            </PlayButton>
-                                            <VolumeContainer className="player-controls--control-element nfp-button-control touchable">
-                                            <PlayButton className="player-controls--control-element nfp-button-control touchable " >
+                                            </Button>
+                                            <VolumeContainer>
+                                            <Button className="player-controls--control-element nfp-button-control touchable " >
                                                 <VolumeControlIcon/>
-                                            </PlayButton>
+                                            </Button>
                                             <PopupWrapper className="touchable"/>
                                             </VolumeContainer>
                                             <VideoTitle className="player-controls--control-element">
@@ -746,27 +696,27 @@ const Watch = function () {
                                                     </SpanVideoTitle>
                                                 </EllipsizeText>
                                             </VideoTitle>
-                                            <NextEpisode className="player-controls--control-element nfp-button-control touchable">
-                                                <PlayButton className="player-controls--control-element nfp-button-control touchable " >
+                                            <NextEpisode>
+                                                <Button className="player-controls--control-element nfp-button-control touchable " >
                                                     <NextIcon />
-                                                </PlayButton>
+                                                </Button>
                                                 <PopupWrapper className="touchable"/>
                                             </NextEpisode>
-                                            <SeasonsInfo className="player-controls--control-element nfp-button-control touchable">
-                                                <PlayButton className="player-controls--control-element nfp-button-control touchable " >
+                                            <SeasonsInfo>
+                                                <Button className="player-controls--control-element nfp-button-control touchable " >
                                                     <SeasonsIcon />
-                                                </PlayButton>
+                                                </Button>
                                                 <PopupWrapper className="touchable"/>
                                             </SeasonsInfo>
-                                            <SubtitlesInfo className="player-controls--control-element nfp-button-control touchable ">
-                                                <PlayButton className="player-controls--control-element nfp-button-control touchable " >
+                                            <SubtitlesInfo >
+                                                <Button className="player-controls--control-element nfp-button-control touchable " >
                                                     <SubtitlesIcon />
-                                                </PlayButton>
+                                                </Button>
                                                 <PopupWrapper className="touchable"/>
                                             </SubtitlesInfo>
-                                            <PlayButton className="player-controls--control-element nfp-button-control touchable " >
+                                            <Button className="player-controls--control-element nfp-button-control touchable " >
                                                     <FullScreenIcon />
-                                            </PlayButton>
+                                            </Button>
                                         </PlayerControlsNeoButtonControlRow>
                                     </PlayerBottomControls>
                                 </PlayerControlsNeoCoreControls>
@@ -776,6 +726,9 @@ const Watch = function () {
             </SizingWrapper>
         </div>
     )
+    
 }
+
+
 
 export default Watch;
