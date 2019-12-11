@@ -9,6 +9,7 @@ import {
 import Browse from './components/pages/browse';
 import Home from './components/pages/home/home';
 import Watch from './components/pages/watch/watch';
+import LoginPage from './components/pages/login/login';
 import NotFound from './components/common/notFound/not-found';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact ><Home/></Route>
+          <Route path="/login"><LoginPage/></Route>
           <Route path="/browse"><Browse/></Route>
           <Route path="/watch"><Watch/></Route>
           <Route path="*"><NotFound /></Route>
